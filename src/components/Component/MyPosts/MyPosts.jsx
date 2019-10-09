@@ -10,11 +10,8 @@ const MyPosts = () => {
                 <button>Add post</button>
                 <button>Delete post</button>
             </div>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
+            <Post message='Hi, Django' like_count='15' dislike_count='20'></Post>
+            <Post message='Hi, Java' like_count='20' dislike_count='15'></Post>
         </div>
     )
 }
