@@ -2,16 +2,21 @@ import React from 'react'
 import m from './MyPosts.module.css'
 import Post from './Post/Post.jsx'
 
-const MyPosts = () => {
+const MyPosts = (props) => {
     return (
-        <div className={m.item_2}>
-            <div>
+        <div className={m.postblock}>
+            MyPosts
+                <div>
                 <textarea></textarea>
-                <button>Add post</button>
-                <button>Delete post</button>
+                <div className={m.buttons}>
+                    <button>Add post</button>
+                    <button>Delete post</button>
+                </div>
             </div>
-            <Post message='Hi, Django' like_count='15' dislike_count='20'></Post>
-            <Post message='Hi, Java' like_count='20' dislike_count='15'></Post>
+            <div className={m.posts}>
+                <Post message='Hi, Django' like_count='15 ' dislike_count='20'></Post>
+                <Post message='Hi, Java' like_count=' 20' dislike_count='15'></Post>
+            </div>
         </div>
     )
 }

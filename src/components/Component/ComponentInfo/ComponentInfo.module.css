@@ -1,0 +1,11 @@
+.content {
+    grid-area: c;
+    background-color: aquamarine;
+}
+.item_1 {
+  color: rgb(235, 235, 235);
+}
+
+.descriptionBlock {
+  padding: 20px;
+}
