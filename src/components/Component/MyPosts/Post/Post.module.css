@@ -1,6 +1,8 @@
 .item {
   color: black;
   padding-left: 5px;
+  padding-top: 20px;
+  background-color: aliceblue;
 }
 .item_2 {
   color: firebrick;
@@ -11,3 +13,4 @@
   height: 50px;
   border-radius: 10px;
 }
+
