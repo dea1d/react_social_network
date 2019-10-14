@@ -7,7 +7,7 @@ const Component = (props) => {
     return (
         <div className={c.content}>
             <ComponentInfo></ComponentInfo>
-            <MyPosts></MyPosts>
+            <MyPosts postsData={props.state.postsData}></MyPosts>
         </div>
 
     )

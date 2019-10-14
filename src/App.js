@@ -4,21 +4,19 @@ import Header from './components/Header/Header.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
 import Component from './components/Component/Component.jsx'
 import Dialogs from './components/Dialogs/Dialogs.jsx'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 
-const App = () => {
+const App = (props) => {
   return (
-    <BrowserRouter>
-      <div className='app-wrapper'>
-        <Header></Header>
-        <Navbar></Navbar>
-        <div className='app-wrapper-content'>
-          <Route path='/Dialogs' component={Dialogs}></Route>
-          <Route path='/Component' component={Component}></Route>
-        </div>
+    <div className='app-wrapper'>
+      <Header></Header>
+      <Navbar></Navbar>
+      <div className='app-wrapper-content'>
+        <Route path='/Dialogs' render={() => <Dialogs state={props.state.messagesPage}></Dialogs>}></Route>
+        <Route path='/Component' render={() => <Component state={props.state.componentPage}></Component>}></Route>
       </div>
-    </BrowserRouter>
+    </div>
   )
 }
 export default App;
