@@ -7,7 +7,7 @@ const Component = (props) => {
     return (
         <div className={c.content}>
             <ComponentInfo></ComponentInfo>
-            <MyPosts postsData={props.state.postsData}></MyPosts>
+            <MyPosts postsData={props.state.postsData} addPost={props.addPost} updateNewPostText={props.updateNewPostText} newPostText={props.state.newPostText}></MyPosts>
         </div>
 
     )

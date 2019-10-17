@@ -8,12 +8,16 @@ const MyPosts = (props) => {
     let getPostEl = React.createRef()
 
     let addPost = () => {
-        let text = getPostEl.current.value
-        alert(text)
+        props.addPost()
     }
 
     let deletePost = () => {
         alert('gg')
+    }
+
+    let onPostchange = () => {
+        let text = getPostEl.current.value
+        props.updateNewPostText(text)
     }
 
 
@@ -22,7 +26,7 @@ const MyPosts = (props) => {
             <h3>MyPosts</h3>
             <div>
                 <div>
-                    <textarea ref={getPostEl}></textarea>
+                    <textarea ref={getPostEl} onChange={onPostchange} value={props.newPostText}></textarea>
                 </div>
 
                 <div className={m.buttons}>
