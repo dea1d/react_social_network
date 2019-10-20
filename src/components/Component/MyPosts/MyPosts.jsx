@@ -1,6 +1,9 @@
 import React from 'react'
 import m from './MyPosts.module.css'
 import Post from './Post/Post.jsx'
+import { addPostActionCreator, updateNewPostActionCreator } from './../../../static/componentReducer'
+
+
 
 const MyPosts = (props) => {
     let postsElements = props.postsData.map(postsEl => <Post message={postsEl.message} id={postsEl.id} like_count={postsEl.like_count} dislike_count={postsEl.dislike_count} />)
@@ -8,7 +11,7 @@ const MyPosts = (props) => {
     let getPostEl = React.createRef()
 
     let addPost = () => {
-        props.dispatch({ type: 'ADD-POST' })
+        props.dispatch(addPostActionCreator());
     }
 
     let deletePost = () => {
@@ -17,8 +20,7 @@ const MyPosts = (props) => {
 
     let onPostchange = () => {
         let text = getPostEl.current.value
-        let action = { type: 'UPDATE-NEW-POST-TEXT', newText: text }
-        props.dispatch(action)
+        props.dispatch(updateNewPostActionCreator(text))
     }
 
 
@@ -27,7 +29,7 @@ const MyPosts = (props) => {
             <h3>MyPosts</h3>
             <div>
                 <div>
-                    <textarea ref={getPostEl} onChange={onPostchange} value={props.newPostText}></textarea>
+                    <textarea placeholder='Enter your post' ref={getPostEl} onChange={onPostchange} value={props.newPostText}></textarea>
                 </div>
                 <div className={m.buttons}>
                     <button onClick={addPost}>Add post</button>

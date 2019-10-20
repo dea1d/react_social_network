@@ -1,6 +1,11 @@
+import messageReducer from "./messageReducer";
+import componentReducer from "./componentReducer";
+import sidebarReducer from "./sidebarReducer";
+
+
+
+
 let store = {
-
-
     _state: {
         componentPage: {
             postsData: [
@@ -25,6 +30,9 @@ let store = {
                 { id: 6, name: 'Mersia' }
             ],
             newMessageText: '1033-1043'
+        },
+        sidebar: {
+
         },
     },
     _callSubcriber() {
@@ -78,31 +86,19 @@ let store = {
 
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 4,
-                message: this._state.componentPage.newPostText,
-                like_count: 23,
-                dislike_count: 10,
-            }
 
-            this._state.componentPage.postsData.push(newPost);
-            this._state.componentPage.newPostText = ''
-            this._callSubcriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.componentPage.newPostText = action.newText;
-            this._callSubcriber(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
-            let newMessage = {
-                message: this._state.messagesPage.newMessageText,
-            }
-            this._state.messagesPage.messageData.push(newMessage);
-            this._state.messagesPage.newMessageText = ''
-            this._callSubcriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.messagesPage.newMessageText = action.newMessage;
-            this._callSubcriber(this._state);
-        }
+
+        this._state.componentPage = componentReducer(this._state.componentPage, action)
+        this._state.messagesPage = messageReducer(this._state.messagesPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+
+
+
+
+        this._callSubcriber(this._state);
+
+
     }
 }
 
