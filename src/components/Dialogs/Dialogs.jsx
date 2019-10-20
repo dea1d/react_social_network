@@ -11,12 +11,12 @@ const Dialog = (props) => {
     let PostEl = React.createRef()
 
     let addMessage = () => {
-        props.addMessage()
+        props.dispatch({ type: 'ADD-MESSAGE' })
     }
 
     let onPostMessage = () => {
         let text = PostEl.current.value
-        props.updateNewMessageText(text)
+        props.dispatch({ type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: text })
     }
 
     return (
