@@ -1,6 +1,6 @@
 .nav {
     grid-area: n;
-    background-color: cadetblue;
+    background-color: rgb(0, 0, 0);
     padding: 20px;
   }
 .item a {

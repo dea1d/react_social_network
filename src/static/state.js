@@ -43,7 +43,7 @@ let store = {
     getState() {
         return this._state
     },
-    subsrcribe(observer) {
+    subscribe(observer) {
         this._callSubcriber = observer;
     },
 

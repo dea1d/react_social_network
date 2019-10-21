@@ -1,17 +1,17 @@
 import React from 'react'
 import m from './MyPosts.module.css'
 import Post from './Post/Post.jsx'
-import { addPostActionCreator, updateNewPostActionCreator } from './../../../static/componentReducer'
+
 
 
 
 const MyPosts = (props) => {
-    let postsElements = props.postsData.map(postsEl => <Post message={postsEl.message} id={postsEl.id} like_count={postsEl.like_count} dislike_count={postsEl.dislike_count} />)
+    let postsElements = props.posts.map(postsEl => <Post message={postsEl.message} id={postsEl.id} like_count={postsEl.like_count} dislike_count={postsEl.dislike_count} />)
 
     let getPostEl = React.createRef()
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+    let onAddPost = () => {
+        props.addPost();
     }
 
     let deletePost = () => {
@@ -20,9 +20,9 @@ const MyPosts = (props) => {
 
     let onPostchange = () => {
         let text = getPostEl.current.value
-        props.dispatch(updateNewPostActionCreator(text))
-    }
+        props.updateNewPostText(text);
 
+    }
 
     return (
         <div className={m.postblock}>
@@ -32,7 +32,7 @@ const MyPosts = (props) => {
                     <textarea placeholder='Enter your post' ref={getPostEl} onChange={onPostchange} value={props.newPostText}></textarea>
                 </div>
                 <div className={m.buttons}>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                     <button onClick={deletePost}>Delete post</button>
                 </div>
 
