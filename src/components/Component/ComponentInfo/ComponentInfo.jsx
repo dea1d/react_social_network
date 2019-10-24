@@ -21,7 +21,7 @@ const TextItem = (props) => {
 const ComponentInfo = (props) => {
     return (
         <div>
-            <ImageComponent img='https://b1.filmpro.ru/c/211152.1200xp.jpg'></ImageComponent>
+            <ImageComponent img='https://media.proglib.io/wp-uploads/2017/12/React.jpg'></ImageComponent>
             <div className={c.descriptionBlock}>
                 <TextItem text='Description'></TextItem>
                 <TextItem text='Test'></TextItem>

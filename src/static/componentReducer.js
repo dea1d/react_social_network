@@ -1,3 +1,4 @@
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
@@ -18,13 +19,19 @@ const componentReducer = (state = initialComponent, action) => {
             message: state.newPostText,
             like_count: 23,
             dislike_count: 10,
-        }
-        state.postsData.push(newPost);
-        state.newPostText = ''
+        };
+        return {
+            ...state,
+            postsData: [...state.postsData, newPost],
+            newPostText: '',
+        };
     } else if (action.type === UPDATE_NEW_POST_TEXT) {
-        state.newPostText = action.newText;
-    }
+        return {
+            ...state,
+            newPostText: action.newText
 
+        };
+    }
     return state;
 }
 

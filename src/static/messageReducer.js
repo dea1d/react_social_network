@@ -25,10 +25,15 @@ const messageReducer = (state = initialMessages, action) => {
         let newMessage = {
             message: state.newMessageText,
         }
-        state.messageData.push(newMessage);
-        state.newMessageText = ''
+        let stateCopy = { ...state }
+        stateCopy.messageData = [...state.messageData]
+        stateCopy.messageData.push(newMessage);
+        stateCopy.newMessageText = ''
+        return stateCopy;
     } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-        state.newMessageText = action.newMessage;
+        let stateCopy = { ...state }
+        stateCopy.newMessageText = action.newMessage;
+        return stateCopy;
     }
 
     return state;

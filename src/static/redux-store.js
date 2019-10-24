@@ -7,11 +7,11 @@ let reducers = combineReducers({
     componentPage: componentReducer,
     messagesPage: messageReducer,
     sidebar: sidebarReducer,
-})
+});
 
 let store = createStore(reducers);
 
 
 
-
+window.store = store
 export default store

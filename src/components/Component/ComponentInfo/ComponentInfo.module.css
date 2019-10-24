@@ -1,6 +1,6 @@
 .content {
     grid-area: c;
-    background-color: aquamarine;
+    background-color: rgb(6, 61, 87);
 }
 .item_1 {
   color: rgb(235, 235, 235);
