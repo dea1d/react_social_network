@@ -21,7 +21,6 @@ let initialMessages = {
 
 const messageReducer = (state = initialMessages, action) => {
     if (action.type === ADD_MESSAGE) {
-        debugger;
         let newMessage = {
             message: state.newMessageText,
         }
