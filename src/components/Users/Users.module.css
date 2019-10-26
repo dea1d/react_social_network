@@ -1,5 +1,7 @@
 .photoSize {
-    width: 150px;
-    height: 150px;
-    float: left;
+    width: 100px;
+    height: 100px;
+    padding-top: 10px;
 }
+
+.all {}

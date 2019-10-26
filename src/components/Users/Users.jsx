@@ -1,23 +1,30 @@
 import React from 'react';
 import k from './Users.module.css'
+import * as axios from 'axios';
+import userPhotoM from '../../assets/images/userM.png'
+
 
 let Users = (props) => {
 
 
     if (props.usersData.length === 0) {
-        props.set_user([
-            { fullname: 'Bot1', message: 'text1', city: 'GPS1', id: 1, followed: true, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },
-            { fullname: 'Bot2', message: 'text2', city: 'GPS2', id: 2, followed: false, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },
-            { fullname: 'Bot3', message: 'text3', city: 'GPS3', id: 3, followed: true, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },
-            { fullname: 'Bot4', message: 'text4', city: 'GPS4', id: 4, followed: false, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },])
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            debugger;
+            props.set_user(response.data.items);
+        })
+
+        // { fullname: 'Bot1', message: 'text1', city: 'GPS1', id: 1, followed: true, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },
+        // { fullname: 'Bot2', message: 'text2', city: 'GPS2', id: 2, followed: false, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },
+        // { fullname: 'Bot3', message: 'text3', city: 'GPS3', id: 3, followed: true, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },
+        // { fullname: 'Bot4', message: 'text4', city: 'GPS4', id: 4, followed: false, imgUrl: 'http://www.forex.ua/bitrix/templates/bv/images/blog/user.jpg' },])
     }
     return <div>
         {
-            props.usersData.map(u => <div key={u.id}>
+            props.usersData.map(u => <div key={'u.id'} className={k.all}>
                 <span>
                     <div>
-                        <img src={u.imgUrl} className={k.photoSize} />
-
+                        <img src={u.photos.small != null ? u.photos.small : userPhotoM} className={k.photoSize} />
                     </div>
                     <div>
                         {u.followed ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button> : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
@@ -26,12 +33,12 @@ let Users = (props) => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullname}</div>
-                        <div>{u.message}</div>
+                        <div className={k.test}>{u.name}</div>
+                        <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.city}</div>
-                        <div></div>
+                        <div>{'u.city'}</div>
+                        <div>{u.id}</div>
                     </span>
 
                 </span>
