@@ -1,14 +1,10 @@
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS'
 
 let initialUsers = {
-    usersData: [
-        // { fullname: 'Bot1', message: 'text1', city: 'GPS1', id: 1, followed: true, },
-        // { fullname: 'Bot2', message: 'text2', city: 'GPS2', id: 2, followed: false, },
-        // { fullname: 'Bot3', message: 'text3', city: 'GPS3', id: 3, followed: true, },
-        // { fullname: 'Bot4', message: 'text4', city: 'GPS4', id: 4, followed: false, },
-    ]
+    usersData: []
 
 };
 
@@ -41,6 +37,8 @@ const usersReducer = (state = initialUsers, action) => {
         }
     }
 
+    return state;
+
 
 }
 
@@ -57,9 +55,9 @@ export const unfollowActionCreator = (userId) => {
 
     }
 }
-export const setUsersActionCreator = (users) => {
+export const setUsersActionCreator = (usersData) => {
     return {
-        type: SET_USERS, users
+        type: SET_USERS, usersData
 
     }
 }
