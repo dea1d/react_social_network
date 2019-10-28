@@ -1,48 +1,55 @@
 import React from 'react';
 import k from './Users.module.css'
-import * as axios from 'axios';
 import userPhotoM from '../../assets/images/userM.png'
 
 
-class Users extends React.Component {
+let Users = (props) => {
 
 
-    componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            this.props.set_user(response.data.items);
-        });
+    let UsersNumberPage = Math.ceil(props.totalUsersCount / props.pageSize);
 
+    let pages = [];
+
+    for (let i = 1; i <= UsersNumberPage; i++) {
+        pages.push(i);
     }
 
-    render() {
-        return <div>
+
+    return <div>
+        <div>
             {
-                this.props.usersData.map(u => <div key={'u.id'} className={k.all}>
-                    <span>
-                        <div>
-                            <img src={u.photos.small != null ? u.photos.small : userPhotoM} className={k.photoSize} />
-                        </div>
-                        <div>
-                            {u.followed ? <button onClick={() => { this.props.unfollow(u.id) }}>Unfollow</button> : <button onClick={() => { this.props.follow(u.id) }}>Follow</button>}
-                        </div>
-
-                    </span>
-                    <span>
-                        <span>
-                            <div className={k.test}>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
-                            <div>{'u.city'}</div>
-                            <div>{u.id}</div>
-                        </span>
-
-                    </span>
-
-                </div>)
+                pages.map(p => {
+                    return <span className={props.currentPage === p && k.stylePageNumber} onClick={(e) => { props.onPageCurrent(p) }}>{p}</span>
+                })
             }
         </div>
-    }
+        {
+            props.usersData.map(u => <div key={'u.id'} className={k.all}>
+                <span>
+                    <div>
+                        <img src={u.photos.small != null ? u.photos.small : userPhotoM} className={k.photoSize} />
+                    </div>
+                    <div>
+                        {u.followed ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button> : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
+                    </div>
+
+                </span>
+                <span>
+                    <span>
+                        <div className={k.test}>{u.name}</div>
+                        <div>{u.status}</div>
+                    </span>
+                    <span>
+                        <div>{'u.city'}</div>
+                        <div>{u.id}</div>
+                    </span>
+
+                </span>
+
+            </div>)
+        }
+    </div>
 }
 
-export default Users
+
+export default Users;
