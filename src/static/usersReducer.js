@@ -1,15 +1,18 @@
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
+const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
+const PRELOADER_USE = 'PRELOADER_USE';
+
 
 let initialUsers = {
     usersData: [],
     pageSize: 3,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false,
 };
 
 const usersReducer = (state = initialUsers, action) => {
@@ -52,6 +55,11 @@ const usersReducer = (state = initialUsers, action) => {
 
 
         }
+    } else if (action.type === PRELOADER_USE) {
+        return {
+            ...state,
+            isFetching: action.isFetching,
+        }
     }
 
     return state;
@@ -87,6 +95,12 @@ export const setCurrentPageActionCreator = (currentPage) => {
 export const setTotalCountActionCreator = (totalUsersCount) => {
     return {
         type: SET_TOTAL_COUNT, count: totalUsersCount
+
+    }
+}
+export const preloaderUseActionCreator = (isFetching) => {
+    return {
+        type: PRELOADER_USE, isFetching
 
     }
 }

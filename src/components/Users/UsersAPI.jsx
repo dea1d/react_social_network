@@ -1,15 +1,16 @@
 import React from 'react';
-import k from './Users.module.css'
 import * as axios from 'axios';
-import userPhotoM from '../../assets/images/userM.png';
 import Users from './Users'
+import Preloader from '../common/Preloader/Preloader';
 
 
 class UsersAPI extends React.Component {
 
 
     componentDidMount() {
+        this.props.preloaderUse(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.preloaderUse(false);
             this.props.set_user(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
         });
@@ -17,7 +18,9 @@ class UsersAPI extends React.Component {
     }
     onPageCurrent = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
+        this.props.preloaderUse(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.preloaderUse(false);
             this.props.set_user(response.data.items);
         });
 
@@ -26,14 +29,18 @@ class UsersAPI extends React.Component {
 
     };
     render() {
-        return <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.propscurrentPage}
-            onPageCurrent={this.onPageCurrent}
-            usersData={this.props.usersData}
-            unfollow={this.props.unfollow}
-            follow={this.props.follow} />
+        return <>
+            {this.props.isFetching ? <Preloader /> : null
+            }
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.propscurrentPage}
+                onPageCurrent={this.onPageCurrent}
+                usersData={this.props.usersData}
+                unfollow={this.props.unfollow}
+                follow={this.props.follow} />
+        </>
     }
 
 }
