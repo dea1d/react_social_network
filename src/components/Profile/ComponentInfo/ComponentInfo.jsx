@@ -23,8 +23,9 @@ const ComponentInfo = (props) => {
         <div>
             <ImageComponent img='https://media.proglib.io/wp-uploads/2017/12/React.jpg'></ImageComponent>
             <div className={c.descriptionBlock}>
-                <TextItem text='Description'></TextItem>
-                <TextItem text='Test'></TextItem>
+                <img src={props.profile.photos.large}></img>
+                <TextItem text={props.profile.fullName}></TextItem>
+                <TextItem text={props.profile.aboutMe}></TextItem>
             </div>
         </div>
     )

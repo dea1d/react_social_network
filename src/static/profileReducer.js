@@ -1,6 +1,7 @@
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 
 let initialComponent = {
@@ -9,10 +10,11 @@ let initialComponent = {
         { like_count: 21, dislike_count: 10, message: 'Hi, Java', id: 2 },
         { like_count: 18, dislike_count: 32, message: 'Hi, C++', id: 3 },
     ],
-    newPostText: 'hi, python'
+    newPostText: 'hi, python',
+    profile: null,
 };
 
-const componentReducer = (state = initialComponent, action) => {
+const profileReducer = (state = initialComponent, action) => {
     if (action.type === ADD_POST) {
         let newPost = {
             id: 4,
@@ -31,6 +33,11 @@ const componentReducer = (state = initialComponent, action) => {
             newPostText: action.newText
 
         };
+    } else if (action.type === SET_USER_PROFILE) {
+        return {
+            ...state,
+            profile: action.profile,
+        }
     }
     return state;
 }
@@ -48,5 +55,12 @@ export const updateNewPostActionCreator = (text) => {
         newText: text
     }
 }
+export const setUserProfileActionCreator = (profile) => {
+    return {
+        type: SET_USER_PROFILE,
+        profile
+    }
+}
 
-export default componentReducer;
+
+export default profileReducer;

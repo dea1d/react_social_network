@@ -1,8 +1,12 @@
 .header {
   grid-area: h;
-  background-color: rgb(54, 34, 126);
+  background-color: rgb(255, 255, 255);
 }
 .header img {
   width: 40px;
+  margin-left: 50px;
 }
 
+.loginblog {
+  float: left;
+}

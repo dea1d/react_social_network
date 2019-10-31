@@ -16,7 +16,8 @@ let initialMessages = {
         { id: 5, name: 'Paris' },
         { id: 6, name: 'Mersia' }
     ],
-    newMessageText: '1033-1043'
+    newMessageText: '1033-1043',
+
 }
 
 const messageReducer = (state = initialMessages, action) => {

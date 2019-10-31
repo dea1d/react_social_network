@@ -1,5 +1,5 @@
 import React from 'react'
-import { addPostActionCreator, updateNewPostActionCreator } from './../../../static/componentReducer'
+import { addPostActionCreator, updateNewPostActionCreator } from './../../../static/profileReducer'
 import MyPosts from './MyPosts'
 import { connect } from 'react-redux';
 
@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 
 
 //     return (
-//         <MyPosts updateNewPostText={onPostchange} addPost={addPost} posts={state.componentPage.postsData} newPostText={state.componentPage.newPostText} />
+//         <MyPosts updateNewPostText={onPostchange} addPost={addPost} posts={state.profilePage.postsData} newPostText={state.profilePage.newPostText} />
 
 //         // Задача контейнерной компоненты - отрисовать презентационную и удовлетворить её некоторыми данными, к примеру функция addPost. 
 //     )  // Тем самым ограничить её от связи со store и сделать куда более тупой ( т.е лишь для отрисовки с помощью входящих данных из props).
@@ -35,8 +35,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.componentPage.postsData,
-        newPostText: state.componentPage.newPostText
+        posts: state.profilePage.postsData,
+        newPostText: state.profilePage.newPostText
     }
 }
 const mapDispatchToProps = (dispatch) => {
