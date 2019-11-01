@@ -5,6 +5,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const PRELOADER_USE = 'PRELOADER_USE';
+const PRELOADER_FOLLOWING = 'PRELOADER_FOLLOWING';
 
 
 let initialUsers = {
@@ -12,7 +13,8 @@ let initialUsers = {
     pageSize: 3,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false,
+    isFetching: true,
+    followingIsProgress: false,
 };
 
 const usersReducer = (state = initialUsers, action) => {
@@ -60,6 +62,11 @@ const usersReducer = (state = initialUsers, action) => {
             ...state,
             isFetching: action.isFetching,
         }
+    } else if (action.type === PRELOADER_FOLLOWING) {
+        return {
+            ...state,
+            followingIsProgress: action.isFetching
+        }
     }
 
     return state;
@@ -103,6 +110,13 @@ export const preloaderUseActionCreator = (isFetching) => {
         type: PRELOADER_USE, isFetching
 
     }
+}
+
+export const preloaderFollowingActionCreator = (isFetching) => {
+    return {
+        type: PRELOADER_FOLLOWING, isFetching
+    }
+
 }
 
 

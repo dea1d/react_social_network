@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import UsersAPI from './UsersAPI';
-import { followActionCreator, unfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalCountActionCreator, preloaderUseActionCreator } from '../../static/usersReducer';
+import { followActionCreator, unfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalCountActionCreator, preloaderUseActionCreator, preloaderFollowingActionCreator } from '../../static/usersReducer';
 
 
 
@@ -14,6 +14,7 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingIsProgress: state.usersPage.followingIsProgress,
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -35,6 +36,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         preloaderUse: (isFetching) => {
             dispatch(preloaderUseActionCreator(isFetching))
+        },
+        followingProgress: (isFetching) => {
+            dispatch(preloaderFollowingActionCreator(isFetching))
         }
     }
 }

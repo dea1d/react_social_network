@@ -15,7 +15,6 @@ class ProfileAPI extends React.Component {
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
             this.props.set_user_profile(response.data);
-
         });
     }
 
