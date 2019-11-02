@@ -1,8 +1,7 @@
 import React from 'react';
-import d from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogsItem.jsx';
 import MessageItem from './MessageItem/MessageItem.jsx';
-
+import { dialogs } from './../../assets/styles/styles'
 
 
 const Dialog = (props) => {
@@ -22,18 +21,18 @@ const Dialog = (props) => {
     }
 
     return (
-        <div className={d.all_dialogs}>
-            <div className={d.dialogs}>
-                <div className={d.dialogs_items}>
+        <div style={dialogs.all_dialogs}>
+            <div style={dialogs.dialog}>
+                <div style={dialogs.items}>
                     {dialogsElements}
                 </div>
-                <div className={d.messages}>
+                <div style={dialogs.messages}>
                     {messageElements}
                     <div>
-                        <textarea placeholder='Enter your message' ref={PostEl} className={d.dialogs_items} value={props.newMessageText} onChange={onPostMessageChange}></textarea>
+                        <textarea placeholder='Enter your message' ref={PostEl} style={dialogs.items} value={props.newMessageText} onChange={onPostMessageChange}></textarea>
                     </div>
                     <div>
-                        <button onClick={onAddMessage} className={d.buttons}>Add Message</button>
+                        <button onClick={onAddMessage}>Add Message</button>
                     </div>
                 </div>
 

@@ -1,7 +1,6 @@
 import React from 'react'
-import * as axios from 'axios';
 import Profile from './Profile.jsx'
-
+import { userAPI } from '../../rest-api/api';
 
 class ProfileAPI extends React.Component {
 
@@ -13,8 +12,8 @@ class ProfileAPI extends React.Component {
             userId = 2;
         }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
-            this.props.set_user_profile(response.data);
+        userAPI.getProfile(userId).then(data => {
+            this.props.set_user_profile(data);
         });
     }
 

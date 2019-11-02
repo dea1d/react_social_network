@@ -14,7 +14,7 @@ let initialUsers = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingIsProgress: false,
+    followingIsProgress: [5041, 5042],
 };
 
 const usersReducer = (state = initialUsers, action) => {
@@ -65,7 +65,10 @@ const usersReducer = (state = initialUsers, action) => {
     } else if (action.type === PRELOADER_FOLLOWING) {
         return {
             ...state,
-            followingIsProgress: action.isFetching
+            followingIsProgress: action.isFetching ?
+                [...state.followingIsProgress, action.userId]
+                :
+                state.followingIsProgress.filter(id => id != action.userId)
         }
     }
 
@@ -112,9 +115,9 @@ export const preloaderUseActionCreator = (isFetching) => {
     }
 }
 
-export const preloaderFollowingActionCreator = (isFetching) => {
+export const preloaderFollowingActionCreator = (isFetching, userId) => {
     return {
-        type: PRELOADER_FOLLOWING, isFetching
+        type: PRELOADER_FOLLOWING, isFetching, userId
     }
 
 }
