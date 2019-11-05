@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ProfileAPI from './ProfileAPI';
-import { addPostActionCreator, updateNewPostActionCreator, setUserProfileActionCreator } from '../../static/profileReducer';
+import { addPostActionCreator, updateNewPostActionCreator, setUserProfileActionCreator, setProfileThunkCreator } from '../../static/profileReducer';
 import { withRouter } from 'react-router-dom'
 
 
@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom'
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth
 })
 let mapDispatchToProps = (dispatch) => {
     return {
@@ -18,12 +19,12 @@ let mapDispatchToProps = (dispatch) => {
         updateNewPost: (text) => {
             dispatch(updateNewPostActionCreator(text))
         },
-
-        set_user_profile: (profile) => {
-            dispatch(setUserProfileActionCreator(profile))
-        },
+        setProfile: (userId) => {
+            dispatch(setProfileThunkCreator(userId))
+        }
     }
 }
+
 
 
 

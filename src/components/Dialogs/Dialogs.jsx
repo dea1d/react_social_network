@@ -2,6 +2,7 @@ import React from 'react';
 import DialogItem from './DialogItem/DialogsItem.jsx';
 import MessageItem from './MessageItem/MessageItem.jsx';
 import { dialogs } from './../../assets/styles/styles'
+import { Redirect } from 'react-router-dom'
 
 
 const Dialog = (props) => {
@@ -19,6 +20,9 @@ const Dialog = (props) => {
         let text = PostEl.current.value
         props.onPostMessage(text)
     }
+
+    if (!props.isAuth) return <Redirect to={'/login'} />;
+
 
     return (
         <div style={dialogs.all_dialogs}>

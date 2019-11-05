@@ -1,3 +1,4 @@
+import { userAPI } from "../rest-api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -61,6 +62,18 @@ export const setUserProfileActionCreator = (profile) => {
         profile
     }
 }
+
+
+
+export const setProfileThunkCreator = (userId) => {
+    return (dispatch) => {
+        userAPI.getProfile(userId).then(data => {
+            dispatch(setUserProfileActionCreator(data));
+        });
+    }
+
+}
+
 
 
 export default profileReducer;

@@ -1,6 +1,5 @@
 import React from 'react'
 import Profile from './Profile.jsx'
-import { userAPI } from '../../rest-api/api';
 
 class ProfileAPI extends React.Component {
 
@@ -9,13 +8,12 @@ class ProfileAPI extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 2;
+            userId = 5040;
         }
 
-        userAPI.getProfile(userId).then(data => {
-            this.props.set_user_profile(data);
-        });
+        this.props.setProfile(userId)
     }
+
 
 
     render() {
@@ -24,5 +22,6 @@ class ProfileAPI extends React.Component {
         )
     }
 }
+
 
 export default ProfileAPI;

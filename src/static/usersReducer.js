@@ -1,3 +1,5 @@
+import { userAPI } from './../rest-api/api'
+
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -122,6 +124,44 @@ export const preloaderFollowingActionCreator = (isFetching, userId) => {
 
 }
 
+
+export const getUsersThunkCreator = (pageSize, currentPage) => {
+    return (dispatch) => {
+        dispatch(preloaderUseActionCreator(true))
+        userAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(preloaderUseActionCreator(false))
+            dispatch(setUsersActionCreator(data.items));
+            dispatch(setTotalCountActionCreator(data.totalCount));
+        });
+    }
+
+}
+
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(preloaderFollowingActionCreator(true, userId));
+        userAPI.follow(userId).then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(followActionCreator(userId))
+            }
+            dispatch(preloaderFollowingActionCreator(false, userId));
+        });
+    }
+}
+
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(preloaderFollowingActionCreator(true, userId));
+        userAPI.unfollow(userId).then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(unfollowActionCreator(userId))
+            }
+            dispatch(preloaderFollowingActionCreator(false, userId));
+        });
+    }
+
+}
 
 
 

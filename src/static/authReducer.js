@@ -1,3 +1,4 @@
+import { userAPI } from "../rest-api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -20,13 +21,24 @@ const authReducer = (state = initialUsers, action) => {
 
 
 }
-
-
 export const setUserDataActionCreator = (userId, email, login) => {
     return {
         type: SET_USER_DATA, data: { userId, email, login }
 
     }
+}
+
+
+export const loginHeader = () => {
+    return (dispatch) => {
+        userAPI.getMeId().then(data => {
+            if (data.resultCode === 0) {
+                let { id, email, login } = data.data;
+                dispatch(setUserDataActionCreator(id, email, login));
+            }
+        });
+    }
+
 }
 
 

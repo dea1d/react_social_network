@@ -8,12 +8,7 @@ class UsersAPI extends React.Component {
 
 
     componentDidMount() {
-        this.props.preloaderUse(true)
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.preloaderUse(false);
-            this.props.set_user(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-        });
+        this.props.getUsersThunk(this.props.pageSize, this.props.currentPage);
     }
 
 
@@ -37,8 +32,8 @@ class UsersAPI extends React.Component {
                 usersData={this.props.usersData}
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
-                followingProgress={this.props.followingProgress}
-                followingIsProgress={this.props.followingIsProgress} />
+                followingIsProgress={this.props.followingIsProgress}
+                isAuth={this.props.isAuth} />
         </>
     }
 

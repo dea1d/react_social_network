@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import HeaderAPI from './HeaderAPI';
-import { setUserDataActionCreator, } from '../../static/authReducer';
+import { loginHeader } from '../../static/authReducer';
 
 
 
@@ -15,8 +15,8 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
   return {
-    authData: (id, email, login) => {
-      dispatch(setUserDataActionCreator(id, email, login))
+    authData: () => {
+      dispatch(loginHeader())
     }
   }
 }
