@@ -1,5 +1,8 @@
 import React from 'react'
 import c from './ComponentInfo.module.css'
+import ProfileStatus from '../ProfileStatus/ProfileStatus'
+
+
 
 const ImageComponent = (props) => {
     return (
@@ -26,6 +29,7 @@ const ComponentInfo = (props) => {
                 <img src={props.profile.photos.large}></img>
                 <TextItem text={props.profile.fullName}></TextItem>
                 <TextItem text={props.profile.aboutMe}></TextItem>
+                <ProfileStatus status={'hi'}></ProfileStatus>
             </div>
         </div>
     )
