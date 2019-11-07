@@ -12,13 +12,14 @@ class ProfileAPI extends React.Component {
         }
 
         this.props.setProfile(userId)
+        this.props.setStatus(userId)
     }
 
 
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile}></Profile>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}></Profile>
         )
     }
 }

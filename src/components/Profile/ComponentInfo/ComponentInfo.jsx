@@ -29,7 +29,7 @@ const ComponentInfo = (props) => {
                 <img src={props.profile.photos.large}></img>
                 <TextItem text={props.profile.fullName}></TextItem>
                 <TextItem text={props.profile.aboutMe}></TextItem>
-                <ProfileStatus status={'hi'}></ProfileStatus>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}></ProfileStatus>
             </div>
         </div>
     )

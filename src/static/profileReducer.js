@@ -1,8 +1,9 @@
-import { userAPI } from "../rest-api/api";
+import { userAPI, profileAPI } from "../rest-api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 
 let initialComponent = {
@@ -13,6 +14,7 @@ let initialComponent = {
     ],
     newPostText: 'hi, python',
     profile: null,
+    status: ' '
 };
 
 const profileReducer = (state = initialComponent, action) => {
@@ -39,6 +41,11 @@ const profileReducer = (state = initialComponent, action) => {
             ...state,
             profile: action.profile,
         }
+    } else if (action.type === SET_STATUS) {
+        return {
+            ...state,
+            status: action.status,
+        }
     }
     return state;
 }
@@ -63,6 +70,13 @@ export const setUserProfileActionCreator = (profile) => {
     }
 }
 
+export const setStatusProfileActionCreator = (status) => {
+    return {
+        type: SET_STATUS,
+        status
+    }
+}
+
 
 
 export const setProfileThunkCreator = (userId) => {
@@ -74,6 +88,25 @@ export const setProfileThunkCreator = (userId) => {
 
 }
 
+export const setStatusThunkCreator = (status) => {
+    return (dispatch) => {
+        profileAPI.getStatus(status).then(response => {
+            dispatch(setStatusProfileActionCreator(response.data))
+
+        })
+    }
+}
+
+export const updateStatusThunkCreator = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatusProfileActionCreator(response.data))
+            }
+
+        })
+    }
+}
 
 
 export default profileReducer;

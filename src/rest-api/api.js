@@ -13,8 +13,8 @@ export const userAPI = {
         )
     },
     getProfile(userId) {
-        return instance.get('profile/' + userId)
-            .then(response => { return response.data })
+        console.log('Устарело. Используйте новый вариант profileAPI object. Этот более поддерживаться не будет.')
+        return profileAPI.getProfile(userId)
     },
     follow(userId) {
         return instance.post(`follow/${userId}`)
@@ -26,4 +26,19 @@ export const userAPI = {
     }
 }
 
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get('profile/' + userId)
+            .then(response => { return response.data })
+    },
+    getStatus(userId) {
+        return instance.get('profile/status/' + userId)
+            .then(response => { return response.data })
+    },
+    updateStatus(status) {
+        return instance.put('profile/status', { status: status }
+        )
+    }
+}
 
