@@ -23,8 +23,8 @@ let mapDispatchToProps = (dispatch) => {
         setProfile: (userId) => {
             dispatch(setProfileThunkCreator(userId))
         },
-        setStatus: (status) => {
-            dispatch(setStatusThunkCreator(status))
+        setStatus: (userId) => {
+            dispatch(setStatusThunkCreator(userId))
         },
         updateStatus: (status) => {
             dispatch(updateStatusThunkCreator(status))

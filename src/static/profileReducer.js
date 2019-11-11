@@ -79,34 +79,29 @@ export const setStatusProfileActionCreator = (status) => {
 
 
 
-export const setProfileThunkCreator = (userId) => {
-    return (dispatch) => {
-        userAPI.getProfile(userId).then(data => {
-            dispatch(setUserProfileActionCreator(data));
-        });
-    }
-
+export const setProfileThunkCreator = (userId) => (dispatch) => {
+    userAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfileActionCreator(response.data));
+    });
 }
 
-export const setStatusThunkCreator = (status) => {
-    return (dispatch) => {
-        profileAPI.getStatus(status).then(response => {
-            dispatch(setStatusProfileActionCreator(response.data))
+export const setStatusThunkCreator = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setStatusProfileActionCreator(response.data))
 
-        })
-    }
+    })
 }
 
-export const updateStatusThunkCreator = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatusProfileActionCreator(response.data))
-            }
 
-        })
-    }
+export const updateStatusThunkCreator = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setStatusProfileActionCreator(status))
+        }
+
+    })
 }
+
 
 
 export default profileReducer;
