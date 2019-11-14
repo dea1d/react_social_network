@@ -21,7 +21,7 @@ const profileReducer = (state = initialComponent, action) => {
     if (action.type === ADD_POST) {
         let newPost = {
             id: 4,
-            message: state.newPostText,
+            message: action.newPostText,
             like_count: 23,
             dislike_count: 10,
         };
@@ -51,9 +51,9 @@ const profileReducer = (state = initialComponent, action) => {
 }
 
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newPostText) => {
     return {
-        type: ADD_POST,
+        type: ADD_POST, newPostText
     }
 }
 

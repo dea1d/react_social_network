@@ -16,19 +16,17 @@ let initialMessages = {
         { id: 5, name: 'Paris' },
         { id: 6, name: 'Mersia' }
     ],
-    newMessageText: '1033-1043',
 
 }
 
 const messageReducer = (state = initialMessages, action) => {
     if (action.type === ADD_MESSAGE) {
         let newMessage = {
-            message: state.newMessageText,
+            message: action.message,
         }
         let stateCopy = { ...state }
         stateCopy.messageData = [...state.messageData]
         stateCopy.messageData.push(newMessage);
-        stateCopy.newMessageText = ''
         return stateCopy;
     } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
         let stateCopy = { ...state }
@@ -39,9 +37,11 @@ const messageReducer = (state = initialMessages, action) => {
     return state;
 }
 
-export const addMessageActionCreator = () => {
+export const addMessageActionCreator = (message) => {
     return {
         type: ADD_MESSAGE,
+        message,
+
     }
 }
 export const updateNewMessageActionCreator = (text) => {
